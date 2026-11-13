@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>저스터웨이 봇 서포트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== 색상은 여기서만 바꾸면 전체에 적용돼요 ===== */
+:root{
+  --bg:#F5F7FA; --panel:#FFFFFF; --ink:#172033; --sub:#4A5568;
+  --line:#DDE2EA; --accent:#2B52E8; --chip:#E9EEFB;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0F1522; --panel:#161E2F; --ink:#EDF0F7; --sub:#A9B2C4;
+         --line:#2A3449; --accent:#8CA4FF; --chip:#1F2A44; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',sans-serif;line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:72px 24px 80px}
+h1{font-size:clamp(34px,6vw,56px);line-height:1.15;margin:0 0 20px;font-weight:900;letter-spacing:-0.02em}
+.lead{font-size:18px;color:var(--sub);max-width:560px;margin:0 0 56px}
+h2{font-size:22px;margin:0 0 6px}
+.start{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-bottom:56px}
+.start ol{margin:8px 0 0;padding-left:22px;color:var(--sub)}
+
+/* 봇 목록: 한 줄이 봇 하나 */
+.bot{display:grid;grid-template-columns:220px 1fr;gap:12px 40px;padding:36px 0;border-top:1px solid var(--line)}
+.bot:last-of-type{border-bottom:1px solid var(--line)}
+.bot .role{color:var(--sub);font-size:14px;margin:0}
+.bot p{margin:0 0 14px}
+.cmds{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.cmds li{background:var(--chip);color:var(--accent);border-radius:6px;padding:2px 10px;font-size:14px;font-weight:500}
+.how{color:var(--sub);font-size:15px}
+.how b{color:var(--ink)}
+
+.help{margin-top:56px}
+a{color:var(--accent);font-weight:700}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (max-width:720px){ .bot{grid-template-columns:1fr;gap:4px} }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <h1>저스터웨이 봇 서포트</h1>
+  <p class="lead">서버 운영을 편하게 해주는 봇 5개의 기능과 사용법을 정리했어요.</p>
+
+  <section class="start">
+    <h2>시작하기</h2>
+    <ol>
+      <li>서버에 봇이 초대되어 있는지 확인하세요.</li>
+      <li>채팅창에 / 를 입력하면 봇의 명령어 목록이 나와요.</li>
+      <li>아래에서 사용할 봇의 사용법을 따라 하세요.</li>
+    </ol>
+  </section>
+
+  <!-- ===== 봇 하나 = article 하나. 새 봇을 넣으려면 article 전체를 복사해서 붙여넣으세요 ===== -->
+
+  <article class="bot">
+    <div>
+      <h2>레벨 봇</h2>
+      <p class="role">채팅 경험치</p>
+    </div>
+    <div>
+      <p>채팅할수록 경험치가 쌓이고, 레벨업하면 이미지 카드로 알려줘요.</p>
+      <ul class="cmds">
+        <li>/레벨</li><li>/로그등록</li><li>/봇설정</li><li>/경험치_추가</li><li>/경험치_제거</li><li>/봇진단</li>
+      </ul>
+      <p class="how"><b>사용법</b> 채팅하면 경험치가 자동으로 올라요. /레벨로 내 카드를 확인하고, 관리자는 /로그등록으로 레벨업 알림 채널을 정하세요. 로그등록, 설정, 경험치 조정, 진단은 관리자만 쓸 수 있어요.</p>
+    </div>
+  </article>
+
+  <article class="bot">
+    <div>
+      <h2>티켓 봇</h2>
+      <p class="role">1:1 문의</p>
+    </div>
+    <div>
+      <p>버튼 한 번으로 1:1 문의 채널을 만들어요. 닫으면 대화 기록이 로그 채널에 저장돼요.</p>
+      <ul class="cmds">
+        <li>/티켓</li><li>/티켓설정</li><li>/티켓닫기</li><li>/유저추가</li><li>/유저제거</li><li>/티켓이름</li>
+      </ul>
+      <p class="how"><b>사용법</b> 관리자가 /티켓으로 채널과 안내 문구를 정해 패널을 만들어요. 멤버는 티켓 열기 버튼을 눌러 문의하고, 끝나면 티켓 닫기를 눌러요. 패널 생성과 설정은 관리자만 할 수 있어요.</p>
+    </div>
+  </article>
+
+  <article class="bot">
+    <div>
+      <h2>냥코 티켓 봇</h2>
+      <p class="role">냥코 문의</p>
+    </div>
+    <div>
+      <p>냥코 문의용 티켓 패널이에요. 버튼으로 티켓을 만들면 관리자가 응대해요.</p>
+      <ul class="cmds">
+        <li>/티켓패널</li><li>/티켓 닫기</li><li>/관리자 추가</li><li>/관리자 제거</li>
+      </ul>
+      <p class="how"><b>사용법</b> 관리자가 /티켓패널로 패널을 올리면 멤버가 버튼을 눌러 티켓을 열어요. 응대가 끝나면 /티켓 닫기로 채널을 지워요. 관리자로 등록된 사람만 관리할 수 있어요.</p>
+    </div>
+  </article>
+
+  <article class="bot">
+    <div>
+      <h2>저스터웨이 봇</h2>
+      <p class="role">반복·예약 메시지</p>
+    </div>
+    <div>
+      <p>메시지를 반복해서 보내고, 원하는 시간에 채널로 예약 전송해요.</p>
+      <ul class="cmds">
+        <li>/말하기</li><li>/예약목록</li><li>/채널예약취소</li>
+      </ul>
+      <p class="how"><b>사용법</b> /말하기에 내용과 횟수(최대 50)를 넣으면 반복해서 보내요. 채널 예약은 1회 또는 매일 반복으로 등록할 수 있고, /예약목록으로 확인한 뒤 /채널예약취소로 취소해요.</p>
+    </div>
+  </article>
+
+  <article class="bot">
+    <div>
+      <h2>부재중 봇</h2>
+      <p class="role">자동 답변</p>
+    </div>
+    <div>
+      <p>주인이 오프라인일 때 멘션을 받으면 미리 정한 부재중 메시지로 대신 답해요.</p>
+      <ul class="cmds">
+        <li>/부재중</li>
+      </ul>
+      <p class="how"><b>사용법</b> 주인이 /부재중에 메시지를 적어두면, 오프라인일 때 누군가 멘션했을 때 그 메시지로 답해요. 메시지 설정은 주인만 할 수 있어요.</p>
+    </div>
+  </article>
+
+  <section class="help">
+    <h2>도움이 필요하세요?</h2>
+    <p class="how">명령어가 안 보이거나 봇이 응답하지 않으면 서포트 서버에서 문의해주세요.</p>
+    <!-- 아래 # 를 디스코드 서버 초대 링크로 바꾸세요 -->
+    <p><a href="#">서포트 서버 입장하기</a></p>
+  </section>
+
+</main>
+</body>
+</html>
